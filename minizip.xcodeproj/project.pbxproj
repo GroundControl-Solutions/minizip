@@ -75,7 +75,7 @@
 				3F288E551A903F4200BA42DF /* zip.c */,
 				3F288E561A903F4200BA42DF /* zip.h */,
 			);
-			path = minizip;
+			name = minizip;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -285,6 +285,7 @@
 				3F288E4C1A903F2B00BA42DF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
