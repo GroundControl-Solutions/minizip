@@ -43,6 +43,9 @@
 #ifndef _unz64_H
 #define _unz64_H
 
+// TODO Precompiled headers
+#include "MZPlatformCompatability.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif
