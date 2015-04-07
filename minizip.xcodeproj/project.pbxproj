@@ -17,6 +17,7 @@
 		3F288E5E1A903F4200BA42DF /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = 3F288E551A903F4200BA42DF /* zip.c */; };
 		3F288E5F1A903F4200BA42DF /* zip.h in Headers */ = {isa = PBXBuildFile; fileRef = 3F288E561A903F4200BA42DF /* zip.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3F288E611A903F5D00BA42DF /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F288E601A903F5D00BA42DF /* libz.dylib */; };
+		3FF9B0F91AD449BC0095D3FE /* MZPlatformCompatability.h in Headers */ = {isa = PBXBuildFile; fileRef = 3FF9B0F81AD449BC0095D3FE /* MZPlatformCompatability.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		3F288E551A903F4200BA42DF /* zip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zip.c; sourceTree = "<group>"; };
 		3F288E561A903F4200BA42DF /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
 		3F288E601A903F5D00BA42DF /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		3FF9B0F81AD449BC0095D3FE /* MZPlatformCompatability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZPlatformCompatability.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +67,7 @@
 		3F288E4D1A903F4200BA42DF /* minizip */ = {
 			isa = PBXGroup;
 			children = (
+				3FF9B0F81AD449BC0095D3FE /* MZPlatformCompatability.h */,
 				3F288E4E1A903F4200BA42DF /* crypt.h */,
 				3F288E4F1A903F4200BA42DF /* ioapi.c */,
 				3F288E501A903F4200BA42DF /* ioapi.h */,
@@ -86,6 +89,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F288E571A903F4200BA42DF /* crypt.h in Headers */,
+				3FF9B0F91AD449BC0095D3FE /* MZPlatformCompatability.h in Headers */,
 				3F288E591A903F4200BA42DF /* ioapi.h in Headers */,
 				3F288E5B1A903F4200BA42DF /* mztools.h in Headers */,
 				3F288E5F1A903F4200BA42DF /* zip.h in Headers */,

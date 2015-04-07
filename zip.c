@@ -21,6 +21,8 @@
 
 */
 
+// TODO Precompiled headers
+#include "MZPlatformCompatability.h"
 
 #include <stdio.h>
 #include <stdlib.h>

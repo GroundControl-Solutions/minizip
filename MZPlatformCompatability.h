@@ -7,6 +7,8 @@
 
 #ifdef __MINGW32__ //Windows under gcc
 //#define __declspec(a) //Windows has problems with __declspec, so do nothing
+#define ftello ftell
+#define fseeko fseek
 #endif
 
 #ifdef __APPLE__ //Mac OSX
