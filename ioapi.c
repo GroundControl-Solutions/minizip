@@ -14,6 +14,9 @@
         #define _CRT_SECURE_NO_WARNINGS
 #endif
 
+// TODO Precompiled headers
+#include "MZPlatformCompatability.h"
+
 #include "ioapi.h"
 
 voidpf call_zopen64 (const zlib_filefunc64_32_def* pfilefunc,const void*filename,int mode)
@@ -142,7 +145,7 @@ static long ZCALLBACK ftell_file_func (voidpf opaque, voidpf stream)
 static ZPOS64_T ZCALLBACK ftell64_file_func (voidpf opaque, voidpf stream)
 {
     ZPOS64_T ret;
-    ret = ftell((FILE *)stream);
+    ret = ftello((FILE *)stream);
     return ret;
 }
 
@@ -188,7 +191,7 @@ static long ZCALLBACK fseek64_file_func (voidpf  opaque, voidpf stream, ZPOS64_T
     }
     ret = 0;
 
-    if(fseek((FILE *)stream, offset, fseek_origin) != 0)
+    if(fseeko((FILE *)stream, offset, fseek_origin) != 0)
                         ret = -1;
 
     return ret;

@@ -4,6 +4,9 @@
   License: Same as ZLIB (www.gzip.org)
 */
 
+// TODO Precompiled headers
+#include "MZPlatformCompatability.h"
+
 /* Code */
 #include <stdio.h>
 #include <stdlib.h>

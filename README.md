@@ -1,3 +1,13 @@
+Note: This is a public fork used internally by GroundControl Solutions. It may contain modifications or patches that diverge from the goals and intentions of the original project maintainers. Examine the commit log and use at your own risk.
+
+# Minizip
+
+A simple software package for reading from and writing to zip archives. Depends on libz.
+
+Original source: [http://www.winimage.com/zLibDll/minizip.html]
+
+##
+
 MiniZip - Copyright (c) 1998-2010 - by Gilles Vollant - version 1.1 64 bits from Mathias Svensson
 
 Introduction
@@ -71,4 +81,3 @@ License
   3. This notice may not be removed or altered from any source distribution.
 
 ----------------------------------------------------------
-
