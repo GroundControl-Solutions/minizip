@@ -13,9 +13,6 @@
 
 #include <windows.h>
 
-// TODO Precompiled headers
-#include "MZPlatformCompatability.h"
-
 #ifdef __cplusplus
 extern "C" {
 #endif

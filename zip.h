@@ -40,9 +40,6 @@
 #ifndef _zip12_H
 #define _zip12_H
 
-// TODO Precompiled headers
-#include "MZPlatformCompatability.h"
-
 #ifdef __cplusplus
 extern "C" {
 #endif

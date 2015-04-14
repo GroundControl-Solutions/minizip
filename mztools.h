@@ -17,9 +17,6 @@ extern "C" {
 
 #include "unzip.h"
 
-// TODO Precompiled headers
-#include "MZPlatformCompatability.h"
-
 /* Repair a ZIP file (missing central directory)
    file: file to recover
    fileOut: output file after recovery
