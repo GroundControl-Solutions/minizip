@@ -29,3 +29,4 @@ xcuserdata
 # object files
 *.o
 *.so
+.idea/
