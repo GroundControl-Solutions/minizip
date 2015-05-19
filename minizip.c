@@ -52,6 +52,12 @@
         #include "iowin32.h"
 #endif
 
+#ifdef __APPLE__
+	#define fopen64 fopen
+	#define fseeko64 fseeko
+	#define ftello64 ftello
+#endif
+
 
 
 #define WRITEBUFFERSIZE (16384)
@@ -384,7 +390,7 @@ int main(argc,argv)
             {
                 FILE * fin;
                 int size_read;
-                const char* filenameinzip = argv[i];
+                char* filenameinzip = argv[i];
                 const char *savefilenameinzip;
                 zip_fileinfo zi;
                 unsigned long crcFile=0;
