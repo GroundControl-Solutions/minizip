@@ -2,10 +2,16 @@ cmake_minimum_required(VERSION 3.1)
 project(minizip)
 
 set(MINIZIP_SOURCE_FILES
+	ioapi.h
     ioapi.c
+    mztools.h
     mztools.c
+    unzip.h
     unzip.c
-    zip.c)
+    zip.h
+    zip.c
+    error.h
+    error.c)
 
 if (WIN32)
 	set(MINIZIP_SOURCE_FILES ${MINIZIP_SOURCE_FILES} iowin32.c)

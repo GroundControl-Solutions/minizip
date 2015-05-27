@@ -17,8 +17,36 @@
 		3F288E5E1A903F4200BA42DF /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = 3F288E551A903F4200BA42DF /* zip.c */; };
 		3F288E5F1A903F4200BA42DF /* zip.h in Headers */ = {isa = PBXBuildFile; fileRef = 3F288E561A903F4200BA42DF /* zip.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3F288E611A903F5D00BA42DF /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F288E601A903F5D00BA42DF /* libz.dylib */; };
+		3F527C651B15133700027194 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F527C641B15133700027194 /* CoreFoundation.framework */; };
+		3F527C6C1B15138500027194 /* error.c in Sources */ = {isa = PBXBuildFile; fileRef = 3F527C6A1B15138500027194 /* error.c */; };
+		3F527C6D1B15138500027194 /* error.h in Headers */ = {isa = PBXBuildFile; fileRef = 3F527C6B1B15138500027194 /* error.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3F527C791B15190C00027194 /* libCFExtension.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F527C741B15190300027194 /* libCFExtension.dylib */; };
 		3FF9B0F91AD449BC0095D3FE /* MZPlatformCompatability.h in Headers */ = {isa = PBXBuildFile; fileRef = 3FF9B0F81AD449BC0095D3FE /* MZPlatformCompatability.h */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3F527C731B15190300027194 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3F527C6E1B15190200027194 /* CFExtension.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3FD4A1E219896A8A0000216E;
+			remoteInfo = CFExtension;
+		};
+		3F527C751B15190300027194 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3F527C6E1B15190200027194 /* CFExtension.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3FD4A20E198AA5FD0000216E;
+			remoteInfo = CFExtensionTests;
+		};
+		3F527C771B15190700027194 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3F527C6E1B15190200027194 /* CFExtension.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 3FD4A1E119896A8A0000216E;
+			remoteInfo = CFExtension;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		3F288E461A903F2B00BA42DF /* libminizip.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libminizip.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -32,6 +60,10 @@
 		3F288E551A903F4200BA42DF /* zip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zip.c; sourceTree = "<group>"; };
 		3F288E561A903F4200BA42DF /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
 		3F288E601A903F5D00BA42DF /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		3F527C641B15133700027194 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		3F527C6A1B15138500027194 /* error.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = error.c; sourceTree = "<group>"; };
+		3F527C6B1B15138500027194 /* error.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = error.h; sourceTree = "<group>"; };
+		3F527C6E1B15190200027194 /* CFExtension.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CFExtension.xcodeproj; path = ../CFExtension/CFExtension.xcodeproj; sourceTree = "<group>"; };
 		3FF9B0F81AD449BC0095D3FE /* MZPlatformCompatability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZPlatformCompatability.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -40,6 +72,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F527C791B15190C00027194 /* libCFExtension.dylib in Frameworks */,
+				3F527C651B15133700027194 /* CoreFoundation.framework in Frameworks */,
 				3F288E611A903F5D00BA42DF /* libz.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -50,6 +84,8 @@
 		3F288E3D1A903F2B00BA42DF = {
 			isa = PBXGroup;
 			children = (
+				3F527C6E1B15190200027194 /* CFExtension.xcodeproj */,
+				3F527C641B15133700027194 /* CoreFoundation.framework */,
 				3F288E601A903F5D00BA42DF /* libz.dylib */,
 				3F288E4D1A903F4200BA42DF /* minizip */,
 				3F288E471A903F2B00BA42DF /* Products */,
@@ -77,8 +113,19 @@
 				3F288E541A903F4200BA42DF /* unzip.h */,
 				3F288E551A903F4200BA42DF /* zip.c */,
 				3F288E561A903F4200BA42DF /* zip.h */,
+				3F527C6A1B15138500027194 /* error.c */,
+				3F527C6B1B15138500027194 /* error.h */,
 			);
 			name = minizip;
+			sourceTree = "<group>";
+		};
+		3F527C6F1B15190200027194 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3F527C741B15190300027194 /* libCFExtension.dylib */,
+				3F527C761B15190300027194 /* CFExtensionTests */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -93,6 +140,7 @@
 				3F288E591A903F4200BA42DF /* ioapi.h in Headers */,
 				3F288E5B1A903F4200BA42DF /* mztools.h in Headers */,
 				3F288E5F1A903F4200BA42DF /* zip.h in Headers */,
+				3F527C6D1B15138500027194 /* error.h in Headers */,
 				3F288E5D1A903F4200BA42DF /* unzip.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -111,6 +159,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				3F527C781B15190700027194 /* PBXTargetDependency */,
 			);
 			name = minizip;
 			productName = minizip;
@@ -141,12 +190,35 @@
 			mainGroup = 3F288E3D1A903F2B00BA42DF;
 			productRefGroup = 3F288E471A903F2B00BA42DF /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 3F527C6F1B15190200027194 /* Products */;
+					ProjectRef = 3F527C6E1B15190200027194 /* CFExtension.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				3F288E451A903F2B00BA42DF /* minizip */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		3F527C741B15190300027194 /* libCFExtension.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libCFExtension.dylib;
+			remoteRef = 3F527C731B15190300027194 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		3F527C761B15190300027194 /* CFExtensionTests */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = CFExtensionTests;
+			remoteRef = 3F527C751B15190300027194 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3F288E421A903F2B00BA42DF /* Sources */ = {
@@ -155,12 +227,21 @@
 			files = (
 				3F288E5C1A903F4200BA42DF /* unzip.c in Sources */,
 				3F288E5E1A903F4200BA42DF /* zip.c in Sources */,
+				3F527C6C1B15138500027194 /* error.c in Sources */,
 				3F288E5A1A903F4200BA42DF /* mztools.c in Sources */,
 				3F288E581A903F4200BA42DF /* ioapi.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3F527C781B15190700027194 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = CFExtension;
+			targetProxy = 3F527C771B15190700027194 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		3F288E481A903F2B00BA42DF /* Debug */ = {
@@ -244,6 +325,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				EXECUTABLE_PREFIX = lib;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/..",
+				);
 				INSTALL_PATH = "";
 				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PATH)";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
@@ -262,6 +347,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				EXECUTABLE_PREFIX = lib;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/..",
+				);
 				INSTALL_PATH = "";
 				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PATH)";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
@@ -314,6 +403,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				EXECUTABLE_PREFIX = lib;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/..",
+				);
 				INSTALL_PATH = /;
 				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PATH)";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
