@@ -19,7 +19,7 @@ endif()
 
 add_library(Minizip ${MINIZIP_SOURCE_FILES})
 
-target_link_libraries(Minizip z)
+target_link_libraries(Minizip z CFExtension ${CoreFoundation})
 
 set(MINIZIPTESTS_SOURCE_FILES
 	minizip.c)
