@@ -23,7 +23,7 @@ CFStringRef const zipErrorDomain = CFSTR("minizip.zipErrorDomain");
 #define Z_BUF_ERROR    (-5)
 #define Z_VERSION_ERROR (-6)
 
-CF_EXPORT CFStringRef
+CFStringRef
 zipGetErrorString(int zipError)
 {
 	switch (zipError) {
@@ -77,7 +77,7 @@ zipGetErrorString(int zipError)
 	}
 }
 
-CF_EXPORT CFErrorRef
+CFErrorRef
 zipCreateError(int zipError)
 {
 	CFStringRef desc;

@@ -10,13 +10,14 @@
 #define __minizip__unzerror__
 
 #include <CoreFoundation/CoreFoundation.h>
+#include <zconf.h>
 
-CF_EXPORT CFStringRef const zipErrorDomain;
+ZEXPORT CFStringRef const zipErrorDomain;
 
-CF_EXPORT CFStringRef
+ZEXPORT CFStringRef
 zipGetErrorString(int unzError);
 
-CF_EXPORT CFErrorRef
+ZEXPORT CFErrorRef
 zipCreateError(int unzError);
 
 #endif /* defined(__minizip__unzerror__) */
