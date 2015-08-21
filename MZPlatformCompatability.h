@@ -6,9 +6,18 @@
 #define _GROUNDGAME_CLIENT_MZPLATFORMCOMPATABILITY_PCH_
 
 #ifdef __MINGW32__ //Windows under gcc
+#include <stdio.h>
+#include <io.h>
+
 //#define __declspec(a) //Windows has problems with __declspec, so do nothing
-#define ftello ftell
-#define fseeko fseek
+static inline __int64 ftello(FILE *f) {
+	return _telli64(_fileno(f));
+}
+
+static inline __int64  fseeko(FILE *f, __int64 off, int whence)
+{
+	return _lseeki64(_fileno(f), off, whence)==-1 ? -1 : 0;
+}
 #endif
 
 #ifdef __APPLE__ //Mac OSX
