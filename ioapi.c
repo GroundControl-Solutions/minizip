@@ -98,9 +98,6 @@ static voidpf ZCALLBACK fopen_file_func (voidpf opaque, const char* filename, in
 
     if ((filename!=NULL) && (mode_fopen != NULL))
         file = fopen(filename, mode_fopen);
-#if defined(__MINGW32__) && !defined(__MINGW64_VERSION_MAJOR)
-    setbuf(file, NULL);
-#endif
     return file;
 }
 
@@ -119,9 +116,6 @@ static voidpf ZCALLBACK fopen64_file_func (voidpf opaque, const void* filename, 
 
     if ((filename!=NULL) && (mode_fopen != NULL))
         file = fopen((const char*)filename, mode_fopen);
-#if defined(__MINGW32__) && !defined(__MINGW64_VERSION_MAJOR)
-    setbuf(file, NULL);
-#endif
     return file;
 }
 
@@ -129,22 +123,14 @@ static voidpf ZCALLBACK fopen64_file_func (voidpf opaque, const void* filename, 
 static uLong ZCALLBACK fread_file_func (voidpf opaque, voidpf stream, void* buf, uLong size)
 {
     uLong ret;
-#if defined(__MINGW32__) && !defined(__MINGW64_VERSION_MAJOR)
-    ret = _read(_fileno((FILE*)stream), buf, size);
-#else
     ret = (uLong)fread(buf, 1, (size_t)size, (FILE *)stream);
-#endif
     return ret;
 }
 
 static uLong ZCALLBACK fwrite_file_func (voidpf opaque, voidpf stream, const void* buf, uLong size)
 {
     uLong ret;
-#if defined(__MINGW32__) && !defined(__MINGW64_VERSION_MAJOR)
-    ret = _write(_fileno((FILE*)stream), buf, size);
-#else
     ret = (uLong)fwrite(buf, 1, (size_t)size, (FILE *)stream);
-#endif
     return ret;
 }
 
