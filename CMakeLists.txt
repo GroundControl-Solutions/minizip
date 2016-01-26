@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.1)
 project(minizip)
 
 set(MINIZIP_SOURCE_FILES
+    ${version_rc}
 	ioapi.h
     ioapi.c
     mztools.h
