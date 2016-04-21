@@ -12,13 +12,15 @@ set(MINIZIP_SOURCE_FILES
     zip.h
     zip.c
     error.h
-    error.c)
+    error.c mzexport.h)
 
 if (WIN32)
 	set(MINIZIP_SOURCE_FILES ${MINIZIP_SOURCE_FILES} iowin32.c)
 endif()
 
 add_library(Minizip ${MINIZIP_SOURCE_FILES})
+
+set_target_properties(Minizip PROPERTIES DEFINE_SYMBOL "MZ_BUILDING_MZ")
 
 target_link_libraries(Minizip z CFExtension ${CoreFoundation})
 

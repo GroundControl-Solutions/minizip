@@ -6,18 +6,18 @@
 //  Copyright (c) 2015 Tekserve. All rights reserved.
 //
 
-#ifndef __minizip__unzerror__
-#define __minizip__unzerror__
+#ifndef MINIZIP_UNZERROR_H
+#define MINIZIP_UNZERROR_H
 
+#include <minizip/mzexport.h>
 #include <CoreFoundation/CoreFoundation.h>
-#include <zconf.h>
 
-ZEXPORT CFStringRef const zipErrorDomain;
+MZ_EXPORT CFStringRef const zipErrorDomain;
 
-ZEXPORT CFStringRef
+MZ_EXPORT CFStringRef
 zipGetErrorString(int unzError);
 
-ZEXPORT CFErrorRef
+MZ_EXPORT CFErrorRef
 zipCreateError(int unzError);
 
-#endif /* defined(__minizip__unzerror__) */
+#endif /* defined(MINIZIP_UNZERROR_H) */
