@@ -46,6 +46,13 @@
 			remoteGlobalIDString = 3FD4A1E119896A8A0000216E;
 			remoteInfo = CFExtension;
 		};
+		3FF5D5E91D33FF9A002395AA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3F527C6E1B15190200027194 /* CFExtension.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3F23C6FF1CE626FF00C39FCF;
+			remoteInfo = CFExtensionStatic;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -123,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				3F527C741B15190300027194 /* libCFExtension.dylib */,
+				3FF5D5EA1D33FF9A002395AA /* libCFExtensionStatic.a */,
 				3F527C761B15190300027194 /* CFExtensionTests */,
 			);
 			name = Products;
@@ -172,7 +180,7 @@
 		3F288E3E1A903F2B00BA42DF /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = Tekserve;
 				TargetAttributes = {
 					3F288E451A903F2B00BA42DF = {
@@ -216,6 +224,13 @@
 			fileType = "compiled.mach-o.executable";
 			path = CFExtensionTests;
 			remoteRef = 3F527C751B15190300027194 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		3FF5D5EA1D33FF9A002395AA /* libCFExtensionStatic.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libCFExtensionStatic.a;
+			remoteRef = 3FF5D5E91D33FF9A002395AA /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -266,6 +281,7 @@
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -307,6 +323,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
