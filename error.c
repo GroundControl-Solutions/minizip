@@ -82,7 +82,7 @@ zipCreateError(int zipError)
 {
 	CFStringRef desc;
 	if (zipError == Z_ERRNO) {
-		desc = CFStringCreateWithCStringNoCopy(kCFAllocatorDefault, strerror(errno), kCFStringEncodingASCII, kCFAllocatorNull);
+		desc = CFStringCreateWithCString(kCFAllocatorDefault, strerror(errno), kCFStringEncodingASCII);
 	}
 	else {
 		desc = CFRetain(zipGetErrorString(zipError));
