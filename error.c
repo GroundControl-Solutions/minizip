@@ -10,7 +10,7 @@
 #include "unzip.h"
 #include "zip.h"
 
-#include <CFExtension/CFExtension.h>
+#include <CoreFoundation/CoreFoundation.h>
 
 CFStringRef const zipErrorDomain = CFSTR("minizip.zipErrorDomain");
 
@@ -77,6 +77,20 @@ zipGetErrorString(int zipError)
 	}
 }
 
+static CF_RETURNS_RETAINED CFStringRef strerror_cf(int err)
+{
+	static const size_t kMax = 1024;
+	char * buf = calloc(kMax, sizeof(char));
+#ifdef _WIN32
+	strerror_s(buf, kMax-1, err);
+#else
+	strerror_r(err, buf, kMax-1);
+#endif
+	CFStringRef ret = CFStringCreateWithCString(kCFAllocatorDefault, buf, kCFStringEncodingUTF8);
+	free(buf);
+	return ret;
+}
+
 CFErrorRef
 zipCreateError(int zipError)
 {
@@ -87,8 +101,10 @@ zipCreateError(int zipError)
 	else {
 		desc = CFRetain(zipGetErrorString(zipError));
 	}
-
-	CFErrorRef retval = CFErrorCreateWithFormat(kCFAllocatorDefault, zipErrorDomain, (CFIndex)zipError, desc, NULL, NULL);
+	
+	CFStringRef keys[] = {kCFErrorDescriptionKey};
+	CFStringRef vals[] = {desc};
+	CFErrorRef retval = CFErrorCreateWithUserInfoKeysAndValues(kCFAllocatorDefault, zipErrorDomain, (CFIndex)zipError, keys, vals, 1);
 	CFRelease(desc);
 	return retval;
 }
