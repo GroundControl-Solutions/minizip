@@ -104,7 +104,7 @@ zipCreateError(int zipError)
 	
 	CFStringRef keys[] = {kCFErrorDescriptionKey};
 	CFStringRef vals[] = {desc};
-	CFErrorRef retval = CFErrorCreateWithUserInfoKeysAndValues(kCFAllocatorDefault, zipErrorDomain, (CFIndex)zipError, keys, vals, 1);
+	CFErrorRef retval = CFErrorCreateWithUserInfoKeysAndValues(kCFAllocatorDefault, zipErrorDomain, (CFIndex)zipError, (CFTypeRef*)keys, (CFTypeRef*)vals, 1);
 	CFRelease(desc);
 	return retval;
 }
