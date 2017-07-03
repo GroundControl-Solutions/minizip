@@ -7,11 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3F288E571A903F4200BA42DF /* crypt.h in Headers */ = {isa = PBXBuildFile; fileRef = 3F288E4E1A903F4200BA42DF /* crypt.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3F288E571A903F4200BA42DF /* crypt.h in Headers */ = {isa = PBXBuildFile; fileRef = 3F288E4E1A903F4200BA42DF /* crypt.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		3F288E581A903F4200BA42DF /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 3F288E4F1A903F4200BA42DF /* ioapi.c */; };
-		3F288E591A903F4200BA42DF /* ioapi.h in Headers */ = {isa = PBXBuildFile; fileRef = 3F288E501A903F4200BA42DF /* ioapi.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3F288E5A1A903F4200BA42DF /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = 3F288E511A903F4200BA42DF /* mztools.c */; };
-		3F288E5B1A903F4200BA42DF /* mztools.h in Headers */ = {isa = PBXBuildFile; fileRef = 3F288E521A903F4200BA42DF /* mztools.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3F288E591A903F4200BA42DF /* ioapi.h in Headers */ = {isa = PBXBuildFile; fileRef = 3F288E501A903F4200BA42DF /* ioapi.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		3F288E5C1A903F4200BA42DF /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 3F288E531A903F4200BA42DF /* unzip.c */; };
 		3F288E5D1A903F4200BA42DF /* unzip.h in Headers */ = {isa = PBXBuildFile; fileRef = 3F288E541A903F4200BA42DF /* unzip.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3F288E5E1A903F4200BA42DF /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = 3F288E551A903F4200BA42DF /* zip.c */; };
@@ -106,12 +104,11 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3F288E571A903F4200BA42DF /* crypt.h in Headers */,
 				3FF9B0F91AD449BC0095D3FE /* MZPlatformCompatability.h in Headers */,
-				3F288E591A903F4200BA42DF /* ioapi.h in Headers */,
-				3F288E5B1A903F4200BA42DF /* mztools.h in Headers */,
 				3F288E5F1A903F4200BA42DF /* zip.h in Headers */,
 				3F527C6D1B15138500027194 /* error.h in Headers */,
+				3F288E591A903F4200BA42DF /* ioapi.h in Headers */,
+				3F288E571A903F4200BA42DF /* crypt.h in Headers */,
 				3F288E5D1A903F4200BA42DF /* unzip.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -175,7 +172,6 @@
 				3F288E5C1A903F4200BA42DF /* unzip.c in Sources */,
 				3F288E5E1A903F4200BA42DF /* zip.c in Sources */,
 				3F527C6C1B15138500027194 /* error.c in Sources */,
-				3F288E5A1A903F4200BA42DF /* mztools.c in Sources */,
 				3F288E581A903F4200BA42DF /* ioapi.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
