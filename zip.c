@@ -1037,10 +1037,13 @@ int Write_LocalFileHeader(zip64_internal* zi, const char* filename, uInt size_ex
       zi->ci.pos_zip64extrainfo = ZTELL64(zi->z_filefunc,zi->filestream);
 
       err = zip64local_putValue(&zi->z_filefunc, zi->filestream, (short)HeaderID,2);
-      err = zip64local_putValue(&zi->z_filefunc, zi->filestream, (short)DataSize,2);
+	  if (err==ZIP_OK)
+		  err = zip64local_putValue(&zi->z_filefunc, zi->filestream, (short)DataSize,2);
 
-      err = zip64local_putValue(&zi->z_filefunc, zi->filestream, (ZPOS64_T)UncompressedSize,8);
-      err = zip64local_putValue(&zi->z_filefunc, zi->filestream, (ZPOS64_T)CompressedSize,8);
+	  if (err==ZIP_OK)
+		  err = zip64local_putValue(&zi->z_filefunc, zi->filestream, (ZPOS64_T)UncompressedSize,8);
+	  if (err==ZIP_OK)
+		  err = zip64local_putValue(&zi->z_filefunc, zi->filestream, (ZPOS64_T)CompressedSize,8);
   }
 
   return err;
