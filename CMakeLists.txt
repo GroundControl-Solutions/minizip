@@ -12,7 +12,7 @@ set(MINIZIP_SOURCE_FILES
     zip.h
     zip.c
     error.h
-    error.c mzexport.h)
+    error.cpp mzexport.h)
 
 if (WIN32)
 	set(MINIZIP_SOURCE_FILES ${MINIZIP_SOURCE_FILES} iowin32.c)

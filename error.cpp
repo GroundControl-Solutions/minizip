@@ -80,7 +80,7 @@ zipGetErrorString(int zipError)
 static CF_RETURNS_RETAINED CFStringRef strerror_cf(int err)
 {
 	static const size_t kMax = 1024;
-	char * buf = calloc(kMax, sizeof(char));
+	char * buf = static_cast<char *>(calloc(kMax, sizeof(char)));
 #ifdef _WIN32
 	strerror_s(buf, kMax-1, err);
 #else
@@ -99,7 +99,7 @@ zipCreateError(int zipError)
 		desc = strerror_cf(errno);
 	}
 	else {
-		desc = CFRetain(zipGetErrorString(zipError));
+		desc = static_cast<CFStringRef>(CFRetain(zipGetErrorString(zipError)));
 	}
 	
 	CFStringRef keys[] = {kCFErrorDescriptionKey};
