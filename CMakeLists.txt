@@ -2,7 +2,6 @@ cmake_minimum_required(VERSION 3.11)
 project(minizip)
 
 set(MINIZIP_SOURCE_FILES
-    ${version_rc}
 	ioapi.h
     ioapi.c
     mztools.h
@@ -22,7 +21,12 @@ add_library(Minizip ${MINIZIP_SOURCE_FILES})
 
 set_target_properties(Minizip PROPERTIES DEFINE_SYMBOL "MZ_BUILDING_MZ")
 
-target_link_libraries(Minizip z ${CoreFoundation})
+target_link_libraries(Minizip
+	PUBLIC
+	z ${CoreFoundation}
+	PRIVATE
+	${version_rc}
+	)
 
 set(MINIZIPTESTS_SOURCE_FILES
 	minizip.c)
