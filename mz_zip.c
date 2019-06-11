@@ -1545,7 +1545,7 @@ int32_t mz_zip_set_comment(void *handle, const char *comment)
     if (zip->comment == NULL)
         return MZ_MEM_ERROR;
     memset(zip->comment, 0, comment_size+1);
-    strncpy(zip->comment, comment, comment_size);
+    strncpy(zip->comment, comment, comment_size+1);
     return MZ_OK;
 }
 

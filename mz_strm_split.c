@@ -206,8 +206,7 @@ int32_t mz_stream_split_open(void *stream, const char *path, int32_t mode)
     if (split->path_cd == NULL)
         return MZ_MEM_ERROR;
 
-    strncpy(split->path_cd, path, split->path_cd_size - 1);
-    split->path_cd[split->path_cd_size - 1] = 0;
+    strncpy(split->path_cd, path, split->path_cd_size);
 
     mz_stream_split_print("Split - Open - %s (disk %"PRId32")\n", split->path_cd, number_disk);
 
