@@ -1,3 +1,5 @@
+Note: This is a public fork used internally by GroundControl Solutions, Inc. It may contain modifications or patches that diverge from the goals and intentions of the original project maintainers. Examine the commit log and use at your own risk.
+
 # minizip 2.8.8
 
 minizip is a zip manipulation library written in C that is supported on Windows, macOS, and Linux. 
