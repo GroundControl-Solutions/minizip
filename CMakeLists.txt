@@ -593,6 +593,8 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
                         DEFINE_SYMBOL "MZ_EXPORTS"
                         POSITION_INDEPENDENT_CODE 1)
 
+target_link_libraries(${PROJECT_NAME} ${version_rc})
+
 if(MZ_LZMA)
     set_target_properties(${PROJECT_NAME} PROPERTIES C_STANDARD 99)
 endif()
