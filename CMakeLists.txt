@@ -59,63 +59,9 @@ configure_file(minizip.pc.cmakein ${MINIZIP_PC} @ONLY)
 
 # Check if zlib installation is present
 if(MZ_ZLIB AND NOT MZ_LIBCOMP)
-    find_package(ZLIB)
-    if(ZLIB_FOUND)
-        message(STATUS "Using ZLIB ${ZLIB_VERSION_STRING}")
-        include_directories(${ZLIB_INCLUDE_DIRS})
-    else()
-        if (NOT ZLIB_TAG)
-            set(ZLIB_TAG master)
-        endif()
-        if (NOT ZLIB_REPOSITORY)
-            set(ZLIB_REPOSITORY https://github.com/madler/zlib)
-        endif()
-
-        message(STATUS "Using ZLIB ${ZLIB_REPOSITORY} ${ZLIB_TAG}")
-
-        set(ZLIB_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/lib/zlib)
-        set(ZLIB_INSTALL_DIR ${CMAKE_CURRENT_BINARY_DIR}/install/zlib)
-        set(ZLIB_INCLUDE_DIRS ${ZLIB_INSTALL_DIR}/include)
-
-        if(WIN32)
-            set(ZLIB_LIBRARIES
-                ${ZLIB_INSTALL_DIR}/lib/zlibstatic$<$<CONFIG:Debug>:d>.lib)
-        else()
-            set(ZLIB_LIBRARIES
-                ${ZLIB_INSTALL_DIR}/lib/libz.a)
-        endif()
-
-        # Build args variable based on cache variables
-        unset(CMAKE_ARGS)
-        get_cmake_property(CACHE_VARS CACHE_VARIABLES)
-        foreach(CACHE_VAR ${CACHE_VARS})
-            get_property(CACHE_VAR_HELPSTRING CACHE ${CACHE_VAR} PROPERTY HELPSTRING)
-            if(CACHE_VAR_HELPSTRING STREQUAL "No help, variable specified on the command line.")
-                get_property(CACHE_VAR_TYPE CACHE ${CACHE_VAR} PROPERTY TYPE)
-                if(CACHE_VAR_TYPE STREQUAL "UNINITIALIZED")
-                    set(CACHE_VAR_TYPE)
-                else()
-                    set(CACHE_VAR_TYPE :${CACHE_VAR_TYPE})
-                endif()
-                if (NOT CACHE_VAR MATCHES "^MZ_")
-                    list(APPEND CMAKE_ARGS "-D${CACHE_VAR}${CACHE_VAR_TYPE}=${${CACHE_VAR}}")
-                endif()
-            endif()
-        endforeach()
-
-        ExternalProject_Add(zlib
-            PREFIX zlib
-            GIT_REPOSITORY ${ZLIB_REPOSITORY}
-            GIT_TAG ${ZLIB_TAG}
-            SOURCE_DIR ${ZLIB_SOURCE_DIR}
-            BUILD_IN_SOURCE 1
-            INSTALL_DIR ${ZLIB_INSTALL_DIR}
-            BUILD_BYPRODUCTS ${ZLIB_STATIC_LIBRARIES}
-            UPDATE_COMMAND ""
-            CMAKE_ARGS "${CMAKE_ARGS};-DCMAKE_INSTALL_PREFIX:STRING=${ZLIB_INSTALL_DIR}")
-
-        include_directories(${ZLIB_INCLUDE_DIRS})
-    endif()
+    find_package(ZLIB REQUIRED)
+    message(STATUS "Using ZLIB ${ZLIB_VERSION_STRING}")
+    include_directories(${ZLIB_INCLUDE_DIRS})
 endif()
 
 # Check if bzip2 installation is present
