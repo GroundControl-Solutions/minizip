@@ -8,7 +8,7 @@
 #ifndef @header_guard@
 #define @header_guard@
 
-#include "mz_compat.h"
+#include <minizip/mz_compat.h>
 
 #endif
 
