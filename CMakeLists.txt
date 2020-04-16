@@ -262,26 +262,13 @@ if(MZ_COMPAT)
     list(APPEND MINIZIP_SRC "mz_compat.c")
     list(APPEND MINIZIP_PUBLIC_HEADERS "mz_compat.h")
 
-    set(COMPAT_HEADER "\
-/* file.h -- Compatibility layer shim\n\
-   part of the MiniZip project\n\n\
-   This program is distributed under the terms of the same license as zlib.\n\
-   See the accompanying LICENSE file for the full text of the license.\n\
-*/\n\n\
-#ifndef MZ_COMPAT_FILE\n\
-#define MZ_COMPAT_FILE\n\n\
-#include \"mz_compat.h\"\n\n\
-#endif\n")
+    function(make_compat_header filename header_guard)
+        configure_file(compat_header.h.in generated_headers/minizip/${filename} @ONLY)
+        list(APPEND MINIZIP_PUBLIC_HEADERS "${CMAKE_CURRENT_BINARY_DIR}/generated_headers/minizip/${filename}")
+    endfunction()
 
-    string(REPLACE "file.h" "zip.h" ZIP_COMPAT_HEADER ${COMPAT_HEADER})
-    string(REPLACE "MZ_COMPAT_FILE" "MZ_COMPAT_ZIP" ZIP_COMPAT_HEADER ${ZIP_COMPAT_HEADER})
-    file(WRITE "zip.h" ${ZIP_COMPAT_HEADER})
-    list(APPEND MINIZIP_PUBLIC_HEADERS "zip.h")
-
-    string(REPLACE "file.h" "unzip.h" UNZIP_COMPAT_HEADER ${COMPAT_HEADER})
-    string(REPLACE "MZ_COMPAT_FILE" "MZ_COMPAT_UNZIP" UNZIP_COMPAT_HEADER ${UNZIP_COMPAT_HEADER})
-    file(WRITE "unzip.h" ${UNZIP_COMPAT_HEADER})
-    list(APPEND MINIZIP_PUBLIC_HEADERS "unzip.h")
+    make_compat_header("zip.h" "MZ_COMPAT_ZIP")
+    make_compat_header("unzip.h" "MZ_COMPAT_UNZIP")
 
     if(MZ_COMPAT_VERSION)
         add_definitions(-DMZ_COMPAT_VERSION=${MZ_COMPAT_VERSION})
@@ -540,6 +527,10 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
                         POSITION_INDEPENDENT_CODE 1)
 
 target_link_libraries(${PROJECT_NAME} PRIVATE ${version_rc})
+
+if(MZ_COMPAT)
+    target_include_directories(${PROJECT_NAME} PUBLIC "${CMAKE_CURRENT_BINARY_DIR}/generated_headers")
+endif()
 
 if(MZ_LZMA)
     set_target_properties(${PROJECT_NAME} PROPERTIES C_STANDARD 99)
