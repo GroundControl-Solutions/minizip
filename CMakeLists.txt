@@ -526,8 +526,6 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
                         DEFINE_SYMBOL "MZ_EXPORTS"
                         POSITION_INDEPENDENT_CODE 1)
 
-target_link_libraries(${PROJECT_NAME} PRIVATE ${version_rc})
-
 if(MZ_COMPAT)
     target_include_directories(${PROJECT_NAME} PUBLIC "${CMAKE_CURRENT_BINARY_DIR}/generated_headers")
 endif()
