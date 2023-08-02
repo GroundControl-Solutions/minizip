@@ -147,8 +147,12 @@
 /* MZ_UTILITY */
 #define MZ_UNUSED(SYMBOL)               ((void)SYMBOL)
 
-#if defined(_WIN32) && defined(MZ_EXPORTS)
+#if defined(_WIN32)
+#if defined(MZ_EXPORTS)
 #define MZ_EXPORT __declspec(dllexport)
+#else
+#define MZ_EXPORT __declspec(dllimport)
+#endif
 #else
 #define MZ_EXPORT
 #endif
