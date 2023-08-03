@@ -668,10 +668,6 @@ set_target_properties(${MINIZIP_TARGET} PROPERTIES
 if(MINIZIP_LFG)
     set_target_properties(${MINIZIP_TARGET} PROPERTIES LINK_FLAGS ${MINIZIP_LFG})
 endif()
-if(MSVC)
-    # VS debugger has problems when executable and static library are named the same
-    set_target_properties(${MINIZIP_TARGET} PROPERTIES OUTPUT_NAME lib${MINIZIP_TARGET})
-endif()
 if(NOT RISCOS AND NOT PSP)
     set_target_properties(${MINIZIP_TARGET} PROPERTIES POSITION_INDEPENDENT_CODE 1)
 endif()
