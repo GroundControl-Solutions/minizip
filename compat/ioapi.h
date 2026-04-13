@@ -6,7 +6,16 @@
 
 typedef uint64_t ZPOS64_T;
 
-#ifndef ZEXPORT
+#ifdef ZEXPORT
+#  undef ZEXPORT
+#endif
+#if defined(_WIN32)
+#  if defined(MZ_EXPORTS)
+#    define ZEXPORT __declspec(dllexport)
+#  else
+#    define ZEXPORT __declspec(dllimport)
+#  endif
+#else
 #  define ZEXPORT
 #endif
 
