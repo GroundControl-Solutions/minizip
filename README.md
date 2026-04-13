@@ -8,17 +8,18 @@ minizip-ng is a zip manipulation library written in C that is supported on Windo
 [![Fuzzing Status](https://oss-fuzz-build-logs.storage.googleapis.com/badges/minizip.svg)](https://bugs.chromium.org/p/oss-fuzz/issues/list?sort=-opened&can=1&q=proj:minizip)
 [![License: Zlib](https://img.shields.io/badge/license-zlib-lightgrey.svg)](https://github.com/zlib-ng/minizip-ng/blob/master/LICENSE)
 [![codecov.io](https://codecov.io/github/zlib-ng/minizip-ng/coverage.svg?branch=develop)](https://codecov.io/github/zlib-ng/minizip-ng/)
+[![Packaging status](https://repology.org/badge/tiny-repos/minizip-ng.svg)](https://repology.org/project/minizip-ng/versions)
 
 Developed and maintained by Nathan Moinvaziri.
 
 ## Branches
 
-|Name|Description|
-|:-|:-|
-|[master](https://github.com/zlib-ng/minizip-ng/tree/master)|Most recent release.|
-|[develop](https://github.com/zlib-ng/minizip-ng/tree/develop)|Latest development code.|
-|[1.2](https://github.com/zlib-ng/minizip-ng/tree/1.2)|Old changes to original minizip that includes WinZip AES encryption, disk splitting, I/O buffering and some additional fixes. Not ABI compatible with original minizip.|
-|[1.1](https://github.com/zlib-ng/minizip-ng/tree/1.1)|Original minizip as of zlib 1.2.11.|
+| Name                                                          | Description                                                                                                                                                             |
+|:--------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [develop](https://github.com/zlib-ng/minizip-ng/tree/develop) | Latest development code.                                                                                                                                                |
+| [master](https://github.com/zlib-ng/minizip-ng/tree/master)   | Most recent stable release.                                                                                                                                             |
+| [1.2](https://github.com/zlib-ng/minizip-ng/tree/1.2)         | Old changes to original minizip that includes WinZip AES encryption, disk splitting, I/O buffering and some additional fixes. Not ABI compatible with original minizip. |
+| [1.1](https://github.com/zlib-ng/minizip-ng/tree/1.1)         | Original minizip as of zlib 1.2.11.                                                                                                                                     |
 
 ## History
 
@@ -66,29 +67,31 @@ cmake --build build
 
 ## Build Options
 
-| Name                | Description                                         | Default Value |
-|:--------------------|:----------------------------------------------------|:-------------:|
-| MZ_COMPAT           | Enables compatibility layer                         |      ON       |
-| MZ_ZLIB             | Enables ZLIB compression                            |      ON       |
-| MZ_BZIP2            | Enables BZIP2 compression                           |      ON       |
-| MZ_LZMA             | Enables LZMA & XZ compression                       |      ON       |
-| MZ_ZSTD             | Enables ZSTD compression                            |      ON       |
-| MZ_LIBCOMP          | Enables Apple compression                           |     APPLE     |
-| MZ_FETCH_LIBS       | Enables fetching third-party libraries if not found |     WIN32     |
-| MZ_FORCE_FETCH_LIBS | Enables fetching third-party libraries always       |      OFF      |
-| MZ_PKCRYPT          | Enables PKWARE traditional encryption               |      ON       |
-| MZ_WZAES            | Enables WinZIP AES encryption                       |      ON       |
-| MZ_OPENSSL          | Enables OpenSSL encryption                          |     UNIX      |
-| MZ_LIBBSD           | Builds with libbsd crypto random                    |     UNIX      |
-| MZ_ICONV            | Enables iconv encoding conversion                   |      ON       |
-| MZ_COMPRESS_ONLY    | Only support compression                            |      OFF      |
-| MZ_DECOMPRESS_ONLY  | Only support decompression                          |      OFF      |
-| MZ_FILE32_API       | Builds using posix 32-bit file api                  |      OFF      |
-| MZ_BUILD_TESTS      | Builds minizip test executable                      |      OFF      |
-| MZ_BUILD_UNIT_TESTS | Builds minizip unit test project                    |      OFF      |
-| MZ_BUILD_FUZZ_TESTS | Builds minizip fuzz executables                     |      OFF      |
-| MZ_CODE_COVERAGE    | Build with code coverage flags                      |      OFF      |
-| MZ_LIB_SUFFIX       | Library name suffix for packaging                   |               |
+| Name                | Description                                                    | Default Value |
+|:--------------------|:---------------------------------------------------------------|:-------------:|
+| MZ_COMPAT           | Enables compatibility layer                                    |      ON       |
+| MZ_ZLIB             | Enables ZLIB compression                                       |      ON       |
+| MZ_ZLIB_FLAVOR      | Select ZLIB implementation (auto, zlib-ng, zlib)               |      auto     |
+| MZ_BZIP2            | Enables BZIP2 compression                                      |      ON       |
+| MZ_LZMA             | Enables LZMA & XZ compression                                  |      ON       |
+| MZ_ZSTD             | Enables ZSTD compression                                       |      ON       |
+| MZ_LIBCOMP          | Enables Apple compression                                      |     APPLE     |
+| MZ_FETCH_LIBS       | Enables fetching third-party libraries if not found            |     WIN32     |
+| MZ_FORCE_FETCH_LIBS | Enables fetching third-party libraries always                  |      OFF      |
+| MZ_PKCRYPT          | Enables PKWARE traditional encryption                          |      ON       |
+| MZ_WZAES            | Enables WinZIP AES encryption                                  |      ON       |
+| MZ_OPENSSL          | Enables OpenSSL encryption                                     |     UNIX      |
+| MZ_LIBBSD           | Builds with libbsd crypto random                               |     UNIX      |
+| MZ_ICONV            | Enables iconv encoding conversion                              |      ON       |
+| MZ_COMPRESS_ONLY    | Only support compression                                       |      OFF      |
+| MZ_DECOMPRESS_ONLY  | Only support decompression                                     |      OFF      |
+| MZ_FILE32_API       | Builds using posix 32-bit file api                             |      OFF      |
+| MZ_BUILD_TESTS      | Builds minizip test executable                                 |      OFF      |
+| MZ_BUILD_UNIT_TESTS | Builds minizip unit test project                               |      OFF      |
+| MZ_BUILD_FUZZ_TESTS | Builds minizip fuzz executables                                |      OFF      |
+| MZ_CODE_COVERAGE    | Build with code coverage flags                                 |      OFF      |
+| MZ_SANITIZER        | Build with code sanitizer (Memory, Thread, Address, Undefined) |               |
+| MZ_LIB_SUFFIX       | Library name suffix for packaging                              |               |
 
 ## Third-Party Libraries
 
@@ -110,4 +113,4 @@ Thanks go out to all the people who have taken the time to contribute code revie
 
 Thanks to [Gilles Vollant](https://www.winimage.com/zLibDll/minizip.html) on which this work is originally based on.
 
-The [ZIP format](https://github.com/zlib-ng/minizip-ng/blob/master/doc/zip/appnote.txt) was defined by Phil Katz of PKWARE.
+The [ZIP format](https://pkware.cachefly.net/webdocs/casestudies/APPNOTE.TXT) was defined by Phil Katz of PKWARE.

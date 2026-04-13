@@ -15,7 +15,7 @@
 #include <stdio.h> /* rename */
 #include <errno.h>
 #if defined(HAVE_ICONV)
-#include <iconv.h>
+#  include <iconv.h>
 #endif
 #include <string.h>
 #include <sys/types.h>
@@ -37,33 +37,33 @@
 #  include <stdlib.h> /* arc4random_buf */
 #endif
 
+#ifndef MZ_PRESERVE_NATIVE_STRUCTURE
+#  define MZ_PRESERVE_NATIVE_STRUCTURE 1
+#endif
+
 /***************************************************************************/
 
 #if defined(HAVE_ICONV)
-uint8_t *mz_os_utf8_string_create(const char *string, int32_t encoding) {
+char *mz_os_utf8_string_create(const char *string, int32_t encoding) {
     iconv_t cd;
+    /// up to CP2147483647
+    char string_encoding[13];
     const char *from_encoding = NULL;
     size_t result = 0;
     size_t string_length = 0;
     size_t string_utf8_size = 0;
-    uint8_t *string_utf8 = NULL;
-    uint8_t *string_utf8_ptr = NULL;
+    char *string_utf8 = NULL;
+    char *string_utf8_ptr = NULL;
 
-    if (!string)
+    if (!string || encoding <= 0)
         return NULL;
 
-    if (encoding == MZ_ENCODING_CODEPAGE_437)
-        from_encoding = "CP437";
-    else if (encoding == MZ_ENCODING_CODEPAGE_932)
-        from_encoding = "CP932";
-    else if (encoding == MZ_ENCODING_CODEPAGE_936)
-        from_encoding = "CP936";
-    else if (encoding == MZ_ENCODING_CODEPAGE_950)
-        from_encoding = "CP950";
-    else if (encoding == MZ_ENCODING_UTF8)
+    if (encoding == MZ_ENCODING_UTF8)
         from_encoding = "UTF-8";
-    else
-        return NULL;
+    else {
+        snprintf(string_encoding, sizeof(string_encoding), "CP%03" PRId32, encoding);
+        from_encoding = string_encoding;
+    }
 
     cd = iconv_open("UTF-8", from_encoding);
     if (cd == (iconv_t)-1)
@@ -71,12 +71,11 @@ uint8_t *mz_os_utf8_string_create(const char *string, int32_t encoding) {
 
     string_length = strlen(string);
     string_utf8_size = string_length * 2;
-    string_utf8 = (uint8_t *)calloc((int32_t)(string_utf8_size + 1), sizeof(char));
+    string_utf8 = (char *)calloc((int32_t)(string_utf8_size + 1), sizeof(char));
     string_utf8_ptr = string_utf8;
 
     if (string_utf8) {
-        result = iconv(cd, (char **)&string, &string_length,
-                (char **)&string_utf8_ptr, &string_utf8_size);
+        result = iconv(cd, (char **)&string, &string_length, (char **)&string_utf8_ptr, &string_utf8_size);
     }
 
     iconv_close(cd);
@@ -89,12 +88,12 @@ uint8_t *mz_os_utf8_string_create(const char *string, int32_t encoding) {
     return string_utf8;
 }
 #else
-uint8_t *mz_os_utf8_string_create(const char *string, int32_t encoding) {
+char *mz_os_utf8_string_create(const char *string, int32_t encoding) {
     return strdup(string);
 }
 #endif
 
-void mz_os_utf8_string_delete(uint8_t **string) {
+void mz_os_utf8_string_delete(char **string) {
     if (string) {
         free(*string);
         *string = NULL;
@@ -147,7 +146,7 @@ int32_t mz_os_rand(uint8_t *buf, int32_t size) {
 
     /* Ensure different random header each time */
     if (++calls == 1) {
-        #define PI_SEED 3141592654UL
+#  define PI_SEED 3141592654UL
         srand((unsigned)(time(NULL) ^ PI_SEED));
     }
 
@@ -272,11 +271,11 @@ int32_t mz_os_make_dir(const char *path) {
     return MZ_OK;
 }
 
-DIR* mz_os_open_dir(const char *path) {
+DIR *mz_os_open_dir(const char *path) {
     return opendir(path);
 }
 
-struct dirent* mz_os_read_dir(DIR *dir) {
+struct dirent *mz_os_read_dir(DIR *dir) {
     if (!dir)
         return NULL;
     return readdir(dir);
@@ -288,6 +287,18 @@ int32_t mz_os_close_dir(DIR *dir) {
     if (closedir(dir) == -1)
         return MZ_INTERNAL_ERROR;
     return MZ_OK;
+}
+
+int32_t mz_os_is_dir_separator(char c) {
+#if MZ_PRESERVE_NATIVE_STRUCTURE
+    // While not strictly adhering to 4.4.17.1,
+    // this preserves UNIX filesystem structure.
+    return c == '/';
+#else
+    // While strictly adhering to 4.4.17.1,
+    // this corrupts UNIX filesystem structure (a filename with a '\\' will become a folder + a file).
+    return c == '\\' || c == '/';
+#endif
 }
 
 int32_t mz_os_is_dir(const char *path) {
@@ -313,12 +324,19 @@ int32_t mz_os_is_symlink(const char *path) {
 }
 
 int32_t mz_os_make_symlink(const char *path, const char *target_path) {
+#if defined(NO_SYMLINK)
+    return MZ_SUPPORT_ERROR;
+#else	
     if (symlink(target_path, path) != 0)
         return MZ_INTERNAL_ERROR;
     return MZ_OK;
+#endif
 }
 
 int32_t mz_os_read_symlink(const char *path, char *target_path, int32_t max_target_path) {
+#if defined(NO_READLINK)
+    return MZ_SUPPORT_ERROR;
+#else
     size_t length = 0;
 
     length = (size_t)readlink(path, target_path, max_target_path - 1);
@@ -326,6 +344,34 @@ int32_t mz_os_read_symlink(const char *path, char *target_path, int32_t max_targ
         return MZ_EXIST_ERROR;
 
     target_path[length] = 0;
+    return MZ_OK;
+#endif
+}
+
+int32_t mz_os_get_temp_path(char *path, int32_t max_path, const char *prefix) {
+    const char *tmp_dir = NULL;
+    int32_t result = 0;
+
+    if (!path || max_path <= 0)
+        return MZ_PARAM_ERROR;
+
+    tmp_dir = getenv("TMPDIR");
+    if (!tmp_dir)
+        tmp_dir = getenv("TMP");
+    if (!tmp_dir)
+        tmp_dir = getenv("TEMP");
+    if (!tmp_dir)
+        tmp_dir = "/tmp";
+
+    /* Build template path for mktemp: <tmp_dir>/<prefix>XXXXXX */
+    result = snprintf(path, max_path, "%s/%sXXXXXX", tmp_dir, prefix ? prefix : "");
+    if (result < 0 || result >= max_path)
+        return MZ_BUF_ERROR;
+
+    /* mktemp replaces XXXXXX with unique characters */
+    if (!mktemp(path))
+        return MZ_INTERNAL_ERROR;
+
     return MZ_OK;
 }
 

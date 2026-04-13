@@ -81,8 +81,10 @@ The _mz_zip_reader_ and _mz_zip_writer_ objects allows you to easily extract or 
   - [mz\_zip\_writer\_set\_aes](#mz_zip_writer_set_aes)
   - [mz\_zip\_writer\_set\_compress\_method](#mz_zip_writer_set_compress_method)
   - [mz\_zip\_writer\_set\_compress\_level](#mz_zip_writer_set_compress_level)
+  - [mz\_zip\_writer\_set\_follow\_links](#mz_zip_writer_set_follow_links)
+  - [mz\_zip\_writer\_get\_follow\_links](#mz_zip_writer_get_follow_links)
+  - [mz\_zip\_writer\_set\_store\_links](#mz_zip_writer_set_store_links)
   - [mz\_zip\_writer\_set\_zip\_cd](#mz_zip_writer_set_zip_cd)
-  - [mz\_zip\_writer\_set\_certificate](#mz_zip_writer_set_certificate)
   - [mz\_zip\_writer\_set\_overwrite\_cb](#mz_zip_writer_set_overwrite_cb)
   - [mz\_zip\_writer\_set\_password\_cb](#mz_zip_writer_set_password_cb)
   - [mz\_zip\_writer\_set\_progress\_cb](#mz_zip_writer_set_progress_cb)
@@ -1795,6 +1797,68 @@ Sets the compression level when adding files in zip.
 mz_zip_writer_set_compress_level(zip_writer, MZ_COMPRESS_LEVEL_BEST);
 ```
 
+### mz_zip_writer_set_follow_links
+
+Sets whether symbolic links will be followed when traversing directories and files to add.
+
+**Arguments**
+|Type|Name|Description|
+|-|-|-|
+|void *|handle|_mz_zip_writer_ instance|
+|uint8_t|follow_links|Follow symbolic links if 1|
+
+**Return**
+|Type|Description|
+|-|-|
+|void|No return|
+
+**Example**
+```
+mz_zip_writer_set_follow_links(zip_writer, 1);
+```
+
+### mz_zip_writer_get_follow_links
+
+Gets whether symbolic links will be followed when traversing directories and files to add.
+
+**Arguments**
+|Type|Name|Description|
+|-|-|-|
+|void *|handle|_mz_zip_writer_ instance|
+|uint8_t *|follow_links|Pointer to store if following symbolic links|
+
+**Return**
+|Type|Description|
+|-|-|
+|int32_t|[MZ_ERROR](mz_error.md) code, MZ_OK if successful|
+
+**Example**
+```
+uint8_t follow = 0;
+mz_zip_writer_get_follow_links(zip_writer, &follow);
+printf("Following symbolic links: %s\n", (follow) ? "yes" : "no");
+```
+
+### mz_zip_writer_set_store_links
+
+Store symbolic links in zip file as symbolic links.
+
+**Arguments**
+|Type|Name|Description|
+|-|-|-|
+|void *|handle|_mz_zip_writer_ instance|
+|uint8_t|store_links|Store symbolic links if 1|
+
+**Return**
+|Type|Description|
+|-|-|
+|void|No return|
+
+**Example**
+```
+mz_zip_writer_set_store_links(zip_writer, 1);
+```
+
 ### mz_zip_writer_set_zip_cd
 
 Sets whether or not the central directory should be zipped.
@@ -1813,27 +1877,6 @@ Sets whether or not the central directory should be zipped.
 **Example**
 ```
 mz_zip_writer_set_zip_cd(zip_writer, 1);
-```
-
-### mz_zip_writer_set_certificate
-
-Sets the certificate and timestamp url to use for signing when adding files in zip.
-
-**Arguments**
-|Type|Name|Description|
-|-|-|-|
-|void *|handle|_mz_zip_writer_ instance|
-|const char *|cert_path|Path to certificate to sign entries with|
-|const char *|cert_pwd|Password for certificate to sign with|
-
-**Return**
-|Type|Description|
-|-|-|
-|int32_t|[MZ_ERROR](mz_error.md) code, MZ_OK if successful|
-
-**Example**
-```
-mz_zip_writer_set_certificate(zip_writer, "c:\\mycerts\\zip_cert.pfx", "mycertpwd");
 ```
 
 ### mz_zip_writer_set_overwrite_cb
